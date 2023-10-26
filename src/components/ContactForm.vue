@@ -1,8 +1,6 @@
 <template>
     <Form
-        @submit="submitContact"
-        :validation-schema="contactFormSchema"
-    >
+        @submit="submitContact" :validation-schema="contactFormSchema">
         <div class="form-group">
             <label for="name">Tên</label>
             <Field
@@ -74,8 +72,8 @@
 </template>
 
 <script>
-import * as yup from "yup";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from 'yup';
+import { Form, Field, ErrorMessage } from 'vee-validate';
 
 export default {
     components: {
@@ -83,9 +81,9 @@ export default {
         Field,
         ErrorMessage,
     },
-    emits: ["submit:contact", "delete:contact"],
+    emits: ['submit:contact', 'delete:contact'],
     props: {
-        contact: { type: Object, required: true }
+        contact: { type: Object, default:{} }
     },
     data() {
         const contactFormSchema = yup.object().shape({
@@ -107,10 +105,10 @@ export default {
                 ),
         });
         return {
-        // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
-        // contactLocal để liên kết với các input trên form
-        contactLocal: this.contact,
-        contactFormSchema,
+            // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
+            // contactLocal để liên kết với các input trên form
+            contactLocal: this.contact,
+            contactFormSchema,
         };
     },
     methods: {
